@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 224: {fileID: 22438398}
   - 222: {fileID: 22239130}
-  - 114: {fileID: 11414190}
   - 114: {fileID: 11428292}
+  - 114: {fileID: 11414190}
   m_Layer: 5
   m_Name: screenFader
   m_TagString: Untagged
