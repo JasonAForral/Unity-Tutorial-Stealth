@@ -24,6 +24,7 @@ public class LastPlayerSighting : MonoBehaviour
         alarm = GameObject.FindGameObjectWithTag(Tags.alarm).GetComponent<AlarmLight>();
         mainLight = GameObject.FindGameObjectWithTag(Tags.alarm).GetComponent<Light>();
         panicAudio = transform.Find("secondaryMusic").GetComponent<AudioSource>();
+        
         GameObject[] sirenGameObjects = GameObject.FindGameObjectsWithTag(Tags.siren);
         sirens = new AudioSource[sirenGameObjects.Length];
         for (int i = 0; i < sirens.Length; i++)
@@ -42,7 +43,6 @@ public class LastPlayerSighting : MonoBehaviour
 
     void SwitchAlarms ()
     {
-        Debug.Log("this");
         alarm.alarmOn = (position != resetPosition);
 
         float newIntensity;
