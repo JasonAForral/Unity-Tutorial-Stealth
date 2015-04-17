@@ -6,9 +6,9 @@ public class ScreenFadeInOut : MonoBehaviour
 {
     public float fadeSpeed = 1.5f;
 
-    RectTransform rectTransform;
-    RawImage rawImage;
-    
+    private RectTransform rectTransform;
+    private RawImage rawImage;
+
     private bool sceneStarting = true;
 
     void Awake ()
