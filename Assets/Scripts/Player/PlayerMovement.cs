@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour {
     private AudioSource audioSource;
     //private HashIDs hash;
 
+    public Transform mainCam;
+    private Vector3 offset;
+
     void Awake ()
     {
         anim = GetComponent<Animator>();
@@ -23,6 +26,9 @@ public class PlayerMovement : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
 
         anim.SetLayerWeight(1, 1f);
+
+        offset = mainCam.position - transform.position;
+
     }
 
     void FixedUpdate ()
@@ -39,6 +45,11 @@ public class PlayerMovement : MonoBehaviour {
         bool shout = Input.GetButtonDown("Attract");
         anim.SetBool(hash.shoutingBool, shout);
         AudioManagement(shout);
+    }
+
+    void LateUpdate ()
+    {
+        mainCam.position = transform.position + offset;
     }
 
     void MovementManagement (float horizontal, float vertical, bool sneaking)
