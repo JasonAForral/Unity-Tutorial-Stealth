@@ -110,7 +110,7 @@ AnimatorStateTransition:
   m_TransitionDuration: .104166642
   m_TransitionOffset: 0
   m_ExitTime: .895833373
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -182,7 +182,7 @@ AnimatorStateTransition:
   m_TransitionDuration: .153061241
   m_TransitionOffset: 0
   m_ExitTime: .846938729
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -251,7 +251,7 @@ AnimatorStateTransition:
   m_TransitionDuration: .315789551
   m_TransitionOffset: 0
   m_ExitTime: .68421042
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -265,7 +265,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: Speed
     m_EventTreshold: .100000001
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: Sneaking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -277,7 +277,7 @@ AnimatorStateTransition:
   m_TransitionDuration: .104166642
   m_TransitionOffset: 0
   m_ExitTime: .895833373
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -319,7 +319,7 @@ AnimatorState:
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 1
-  m_WriteDefaultValues: 0
+  m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 20682902}
   m_Tag: 
@@ -391,7 +391,7 @@ AnimatorState:
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 1
-  m_WriteDefaultValues: 0
+  m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400002, guid: a72fb85e2d133804d982acc9f29e67c7, type: 3}
   m_Tag: 
@@ -410,7 +410,7 @@ AnimatorState:
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 1
-  m_WriteDefaultValues: 0
+  m_WriteDefaultValues: 1
   m_Mirror: 0
   m_Motion: {fileID: 7400000, guid: dffa50cfe77e0434bbfa71245b3dd529, type: 3}
   m_Tag: 
