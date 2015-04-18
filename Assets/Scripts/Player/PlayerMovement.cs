@@ -12,10 +12,9 @@ public class PlayerMovement : MonoBehaviour {
 
     private Rigidbody rigidBody;
     private AudioSource audioSource;
-    //private HashIDs hash;
 
-    public Transform mainCam;
-    private Vector3 offset;
+    public Transform cameraPan;
+    //private HashIDs hash;
 
     void Awake ()
     {
@@ -27,7 +26,6 @@ public class PlayerMovement : MonoBehaviour {
 
         anim.SetLayerWeight(1, 1f);
 
-        offset = mainCam.position - transform.position;
 
     }
 
@@ -49,7 +47,10 @@ public class PlayerMovement : MonoBehaviour {
 
     void LateUpdate ()
     {
-        mainCam.position = transform.position + offset;
+        cameraPan.position = transform.position;
+        //cameraPan.LookAt(Camera.main.transform.position, Vector3.up);
+        //cameraPan.rotation = Camera.main.transform.position, Vector3.up);
+        cameraPan.localRotation = Quaternion.Euler(Vector3.up * Camera.main.transform.rotation.eulerAngles.y);
     }
 
     void MovementManagement (float horizontal, float vertical, bool sneaking)
@@ -60,7 +61,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             Rotating(horizontal, vertical);
             anim.SetFloat(hash.speedFloat, 5.5f, speedDampTime, Time.deltaTime);
-            //rigidBody.MovePosition(new Vector3(horizontal, 0.0f, vertical));
         }
         else
         {
@@ -70,8 +70,15 @@ public class PlayerMovement : MonoBehaviour {
 
     void Rotating (float horizontal, float vertical)
     {
-        //Vector3 targetDirection = Vector3.right * horizontal + Vector3.forward * vertical;
-        Vector3 targetDirection = new Vector3(horizontal, 0.0f, vertical);
+        // Vector3 targetDirection = Vector3.right * horizontal + Vector3.forward * vertical;
+        //Vector3 targetDirection = new Vector3(horizontal, 0.0f, vertical);
+
+        //Vector3.
+
+        // use camera based direction instead
+        Vector3 targetDirection = cameraPan.TransformDirection(new Vector3(horizontal, 0.0f, vertical));
+        
+
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
         Quaternion newRotation = Quaternion.Lerp(rigidBody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
         rigidBody.MoveRotation(newRotation);
