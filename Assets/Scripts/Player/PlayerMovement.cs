@@ -48,10 +48,10 @@ public class PlayerMovement : MonoBehaviour {
 
     void LateUpdate ()
     {
-        cameraPan.position = transform.position;
+        //cameraPan.position = transform.position;
         //cameraPan.LookAt(Camera.main.transform.position, Vector3.up);
         //cameraPan.rotation = Camera.main.transform.position, Vector3.up);
-        cameraPan.localRotation = Quaternion.Euler(Vector3.up * Camera.main.transform.rotation.eulerAngles.y);
+        //cameraPan.localRotation = Quaternion.Euler(Vector3.up * Camera.main.transform.rotation.eulerAngles.y);
     }
 
     void MovementManagement (float horizontal, float vertical, bool sneaking)
