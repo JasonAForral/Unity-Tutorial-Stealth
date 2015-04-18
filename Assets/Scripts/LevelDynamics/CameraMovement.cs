@@ -19,8 +19,16 @@ public class CameraMovement : MonoBehaviour {
         relCameraPosMag = relCameraPos.magnitude - 0.5f;
         
 	}
+
+    void Update ()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            transform.Translate(Vector3.right * Input.GetAxis("Mouse X") + Vector3.up * Input.GetAxis("Mouse Y"));
+            transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") );
+        }
+    }
 	
-	// Update is called once per frame
 	void FixedUpdate () {
         Vector3 standardPos = player.position + relCameraPos;
         Vector3 abovePos = player.position + Vector3.up * relCameraPosMag;

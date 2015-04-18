@@ -24,7 +24,8 @@ public class PlayerMovement : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
 
-        anim.SetLayerWeight(1, 1f);
+        anim.SetLayerWeight(1, 2f);
+        anim.SetLayerWeight(0, 0f);
 
 
     }
