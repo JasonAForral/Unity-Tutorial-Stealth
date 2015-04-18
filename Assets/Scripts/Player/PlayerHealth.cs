@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour {
 
     public HashIDs hash; 
-    public ScreenFadeInOut sceneFadeInOut;
+    public SceneFadeInOut sceneFadeInOut;
     public LastPlayerSighting lastPlayerSighting;
 
     //public gameObject gameController;
@@ -102,7 +102,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public void UpdateHealthDisplay ()
     {
-        healthText.text = health + " HP";
-        healthImageSize.sizeDelta = Vector2.right * health;
+        healthText.text = health + System.String.Empty;
+        healthImageSize.sizeDelta = new Vector2( health, 10f);
     }
 }

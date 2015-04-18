@@ -8,12 +8,15 @@ public class LiftTrigger : MonoBehaviour {
     public float timeToEndLevel = 6f;
     public float liftSpeed = 3f;
 
-    public GameObject player;
-    //private GameObject player;
+    //public GameObject player;
+    //public HashIDs hash;
+    //public SceneFadeInOut sceneFadeInOut;
+
+    private GameObject player;
+    private HashIDs hash;
+    private SceneFadeInOut sceneFadeInOut;
     private Animator playerAnim;
-    public HashIDs hash;
-    private CameraMovement camMovement;
-    public SceneFadeInOut sceneFadeInOut;
+    //private Camera camMovement;
     private LiftDoorsTracking liftDoorsTracking;
     private bool playerInLift;
     private float timer;
@@ -22,13 +25,13 @@ public class LiftTrigger : MonoBehaviour {
 
     void Awake ()
     {
-        //player = GameObject.FindGameObjectWithTag(Tags.player);
-        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
-        //sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<SceneFadeInOut>();
+        player = GameObject.FindGameObjectWithTag(Tags.player);
+        hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<SceneFadeInOut>();
         
         playerAnim = player.GetComponent<Animator>();
-        
-        camMovement = Camera.main.GetComponent<CameraMovement>();
+
+        //camMovement = Camera.main.GetComponent<Camera>();
         liftDoorsTracking = GetComponent<LiftDoorsTracking>();
 
         audioSource = GetComponent<AudioSource>();
@@ -72,7 +75,7 @@ public class LiftTrigger : MonoBehaviour {
         if (timer >= timeToLiftStart)
         {
             playerAnim.SetFloat(hash.speedFloat, 0f);
-            camMovement.enabled = false;
+            //camMovement.enabled = true;
             player.transform.parent = transform;
 
             transform.Translate(Vector3.up * liftSpeed * Time.deltaTime);
