@@ -6,14 +6,14 @@ public class LaserBlinking : MonoBehaviour {
     public float onTime;
     public float offTime;
 
-    private MeshRenderer renderer;
+    private MeshRenderer meshRenderer;
     private Light lightSource;
     //private AudioSource audioSource;
     private float timer;
 
     void Awake ()
     {
-        renderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
         lightSource = GetComponent<Light>();
         //audioSource = GetComponent<AudioSource>();
     }
@@ -22,11 +22,11 @@ public class LaserBlinking : MonoBehaviour {
     {
         timer += Time.deltaTime;
 
-        if (renderer.enabled && timer >= onTime)
+        if (meshRenderer.enabled && timer >= onTime)
         {
             SwitchBeam();
         }
-        else if (!renderer.enabled && timer >= offTime)
+        else if (!meshRenderer.enabled && timer >= offTime)
         {
             SwitchBeam();
         }
@@ -36,7 +36,7 @@ public class LaserBlinking : MonoBehaviour {
     {
         timer = 0f;
 
-        renderer.enabled = !renderer.enabled;
+        meshRenderer.enabled = !meshRenderer.enabled;
         lightSource.enabled = !lightSource.enabled;
         //audioSource.enabled = !audioSource.enabled;
     }

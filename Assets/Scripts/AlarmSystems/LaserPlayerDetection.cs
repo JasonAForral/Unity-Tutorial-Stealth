@@ -6,19 +6,19 @@ public class LaserPlayerDetection : MonoBehaviour {
     public Transform player;
     public LastPlayerSighting lastPlayerSighting;
     
-    private MeshRenderer renderer;
+    private MeshRenderer meshRenderer;
     
     void Awake ()
     {
         //player = GameObject.FindGameObjectWithTag(Tags.player);
         //lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<LastPlayerSighting>();
-        renderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
 
     }
 
     void OnTriggerStay (Collider other)
     {
-        if (renderer.enabled)
+        if (meshRenderer.enabled)
         {
             if (other.gameObject.CompareTag(Tags.player))
             {
