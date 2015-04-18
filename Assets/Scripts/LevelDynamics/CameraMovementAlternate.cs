@@ -21,7 +21,7 @@ public class CameraMovementAlternate : MonoBehaviour {
         {
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X"));
             cameraTilt.Rotate(Vector3.left * Input.GetAxis("Mouse Y"));
-            cameraTilt.localRotation = Quaternion.Euler(Vector3.right * Mathf.Clamp(cameraTilt.rotation.eulerAngles.x, 5f, 80f));
+            cameraTilt.localRotation = Quaternion.Euler(Vector3.right * Mathf.Clamp(cameraTilt.eulerAngles.x, 5f, 80f));
         }
 
         cameraZoom.Translate(Vector3.forward * 50 * Input.GetAxis("Mouse Scroll"), cameraZoom);
