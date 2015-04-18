@@ -1556,6 +1556,48 @@ Transform:
   - {fileID: 1279163360}
   m_Father: {fileID: 920017956}
   m_RootOrder: 0
+--- !u!1001 &667201123
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1280246290}
+    m_Modifications:
+    - target: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: .70710659
+      objectReference: {fileID: 0}
+    - target: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -.707106948
+      objectReference: {fileID: 0}
+    - target: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &684845199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2834,7 +2876,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1280246290}
   m_Layer: 0
-  m_Name: doors_generic_slide
+  m_Name: doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2853,6 +2895,7 @@ Transform:
   - {fileID: 2133431550}
   - {fileID: 99164804}
   - {fileID: 1527556659}
+  - {fileID: 1664830410}
   m_Father: {fileID: 0}
   m_RootOrder: 16
 --- !u!1 &1305313929
@@ -4013,6 +4056,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 521484014}
   m_RootOrder: 0
+--- !u!1 &1664830409 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 135766, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+  m_PrefabInternal: {fileID: 667201123}
+--- !u!4 &1664830410 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 423406, guid: 608ff75d853713844990f7e7ec1e9d04, type: 2}
+  m_PrefabInternal: {fileID: 667201123}
+--- !u!82 &1664830414
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1664830409}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &1675150267
 Prefab:
   m_ObjectHideFlags: 0

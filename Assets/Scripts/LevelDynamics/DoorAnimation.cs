@@ -3,9 +3,9 @@ using System.Collections;
 
 public class DoorAnimation : MonoBehaviour {
 
-    public HashIDs hash;
+    //public HashIDs hash;
     //public GameObject player;
-    public PlayerInventory playerInventory;
+    //public PlayerInventory playerInventory;
     
     
     public bool requireKey;
@@ -13,9 +13,9 @@ public class DoorAnimation : MonoBehaviour {
     public AudioClip accessDeniedClip;
 
     private Animator anim;
-    //private HashIDs hash;
-    //private GameObject player;
-    //private PlayerInventory playerInventory;
+    private HashIDs hash;
+    private GameObject player;
+    private PlayerInventory playerInventory;
     private int count;
 
     private AudioSource audioSource;
@@ -23,17 +23,15 @@ public class DoorAnimation : MonoBehaviour {
     void Awake ()
     {
         anim = GetComponent<Animator>();
-        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
-        //player = GameObject.FindGameObjectWithTag(Tags.player);
-        //playerInventory = player.GetComponent<PlayerInventory>();
+        hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        player = GameObject.FindGameObjectWithTag(Tags.player);
+        playerInventory = player.GetComponent<PlayerInventory>();
 
         audioSource = GetComponent<AudioSource>();
-        Debug.Log("Awake");
     }
 
     void OnTriggerEnter (Collider other)
     {
-        Debug.Log("Enter");
         if (other.CompareTag(Tags.player))
         {
             if (requireKey)
