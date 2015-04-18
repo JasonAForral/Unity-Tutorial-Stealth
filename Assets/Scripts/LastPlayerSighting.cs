@@ -17,14 +17,14 @@ public class LastPlayerSighting : MonoBehaviour
     public AudioSource panicAudio;
     
     private AudioSource[] sirens;
-    private AudioSource audio;
+    private AudioSource audioSource;
 
     void Awake ()
     {
         //alarm = GameObject.FindGameObjectWithTag(Tags.alarm).GetComponent<AlarmLight>();
         //mainLight = GameObject.FindGameObjectWithTag(Tags.alarm).GetComponent<Light>();
         //panicAudio = transform.Find("secondaryMusic").GetComponent<AudioSource>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         
         GameObject[] sirenGameObjects = GameObject.FindGameObjectsWithTag(Tags.siren);
         sirens = new AudioSource[sirenGameObjects.Length];
@@ -68,13 +68,13 @@ public class LastPlayerSighting : MonoBehaviour
     {
         if (position != resetPosition)
         {
-            audio.volume = Mathf.Lerp(audio.volume, 0f, musicFadeSpeed * Time.deltaTime);
+            audioSource.volume = Mathf.Lerp(audioSource.volume, 0f, musicFadeSpeed * Time.deltaTime);
             panicAudio.volume = Mathf.Lerp(panicAudio.volume, 0.8f, musicFadeSpeed * Time.deltaTime);
 
         }
         else
         {
-            audio.volume = Mathf.Lerp(audio.volume, 0.8f, musicFadeSpeed * Time.deltaTime);
+            audioSource.volume = Mathf.Lerp(audioSource.volume, 0.8f, musicFadeSpeed * Time.deltaTime);
             panicAudio.volume = Mathf.Lerp(panicAudio.volume, 0f, musicFadeSpeed * Time.deltaTime);
         }
     }
