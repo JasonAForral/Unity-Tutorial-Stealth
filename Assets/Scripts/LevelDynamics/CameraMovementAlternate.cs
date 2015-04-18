@@ -9,6 +9,8 @@ public class CameraMovementAlternate : MonoBehaviour {
 
     private Vector3 cameraOffset;
 
+    //private float maxZoom;
+
     void Awake ()
     {
         cameraOffset = transform.position - player.position;

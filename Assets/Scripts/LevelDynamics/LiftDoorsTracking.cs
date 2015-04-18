@@ -9,8 +9,8 @@ public class LiftDoorsTracking : MonoBehaviour {
     public Transform rightOuterDoor;
     public Transform leftInnerDoor;
     public Transform rightInnerDoor;
-    private float leftClosedPosX;
-    private float rightClosedPosX;
+    public float leftClosedPosX;
+    public float rightClosedPosX;
 
     void Awake ()
     {
@@ -25,13 +25,17 @@ public class LiftDoorsTracking : MonoBehaviour {
 
     void MoveDoors (float newLeftXTarget, float newRightXTarget)
     {
-        Vector3 doorVector3 = leftInnerDoor.position;
-        float newX = Mathf.Lerp(doorVector3.x, newLeftXTarget, doorSpeed * Time.deltaTime);
-        leftInnerDoor.position = new Vector3(newX, doorVector3.y, doorVector3.z);
 
-        doorVector3 = rightInnerDoor.position;
-        newX = Mathf.Lerp(doorVector3.x, newLeftXTarget, doorSpeed * Time.deltaTime);
-        rightInnerDoor.position = new Vector3(newX, doorVector3.y, doorVector3.z);
+        //float newX = Mathf.Lerp(leftInnerDoor.position.x, newLeftXTarget, doorSpeed * Time.deltaTime);
+        //leftInnerDoor.position = new Vector3(newX, leftInnerDoor.position.y, leftInnerDoor.position.z);
+
+        Vector3 InitialPosition = leftInnerDoor.position;
+        float newX = Mathf.Lerp(InitialPosition.x, newLeftXTarget, doorSpeed * Time.deltaTime);
+        leftInnerDoor.position = new Vector3(newX, InitialPosition.y, InitialPosition.z);
+
+        InitialPosition = rightInnerDoor.position;
+        newX = Mathf.Lerp(InitialPosition.x, newRightXTarget, doorSpeed * Time.deltaTime);
+        rightInnerDoor.position = new Vector3(newX, InitialPosition.y, InitialPosition.z);
     }
 
     public void DoorFollowing ()
@@ -43,5 +47,7 @@ public class LiftDoorsTracking : MonoBehaviour {
     {
         MoveDoors(leftClosedPosX, rightClosedPosX);
     }
+
+
 
 }
