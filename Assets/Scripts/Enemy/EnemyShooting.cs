@@ -70,16 +70,17 @@ public class EnemyShooting : MonoBehaviour {
         float fractionalDistance = (col.radius - Vector3.Distance(transform.position, player.position)) * colRadiusRecip;
         float damage = scaledDamage * fractionalDistance + minimumDamage;
         playerHealth.TakeDamage(damage);
+        ShotEffects();
     }
 
     void ShotEffects ()
     {
-        //Vector3 laserPosition = laserShotLine.transform.position;
-        laserShotLine.SetPosition(0, laserShotLine.transform.position);
+        Vector3 laserPosition = laserShotLine.transform.position;
+        laserShotLine.SetPosition(0, laserPosition);
         laserShotLine.SetPosition(1, player.position + Vector3.up * 1.5f);
         laserShotLine.enabled = true;
         laserShotLight.intensity = flashIntensity;
-        AudioSource.PlayClipAtPoint(shotClip, laserShotLine.transform.position);
+        AudioSource.PlayClipAtPoint(shotClip, laserPosition);
     }
 }
 
