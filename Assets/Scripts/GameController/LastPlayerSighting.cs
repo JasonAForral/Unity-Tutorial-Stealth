@@ -4,7 +4,7 @@ using System.Collections;
 public class LastPlayerSighting : MonoBehaviour 
 {
     public Vector3 position = Vector3.one * 1000f;
-    public Vector3 resetPosition = Vector3.one * 1000;
+    public Vector3 resetPosition = Vector3.one * 1000f;
 
     public float lightHighIntensity = 0.25f;
     public float lightLowIntensity = 0f;

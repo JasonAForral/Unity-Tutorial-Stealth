@@ -33,6 +33,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+
         //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
         //sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<ScreenFadeInOut>();
         //lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
@@ -102,7 +103,8 @@ public class PlayerHealth : MonoBehaviour {
 
     public void UpdateHealthDisplay ()
     {
-        healthText.text = health + System.String.Empty;
-        healthImageSize.sizeDelta = new Vector2( health, 10f);
+        healthText.text = Mathf.RoundToInt(health) + System.String.Empty;
+        healthImageSize.sizeDelta = new Vector2(health, 10f);
+        
     }
 }

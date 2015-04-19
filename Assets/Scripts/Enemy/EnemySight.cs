@@ -61,7 +61,8 @@ public class EnemySight : MonoBehaviour {
         if (other.CompareTag(Tags.player))
         {
             playerInSight = false;
-
+            if (0 >= playerHealth.health)
+                return;
             
             Vector3 myPosition = transform.position;
             Vector3 playerPosition = playerObj.transform.position;
