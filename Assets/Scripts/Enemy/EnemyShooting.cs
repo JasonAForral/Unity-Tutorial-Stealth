@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyShooting : MonoBehaviour {
 
+    public LineRenderer laserShotLine;
+    
     public float maximumDamage = 120f;
     public float minimumDamage = 45f;
     public AudioClip shotClip;
@@ -11,7 +13,6 @@ public class EnemyShooting : MonoBehaviour {
 
     private Animator anim;
     private HashIDs hash;
-    public LineRenderer laserShotLine;
     private Light laserShotLight;
     private SphereCollider col;
     private Transform player;
@@ -56,12 +57,29 @@ public class EnemyShooting : MonoBehaviour {
         laserShotLight.intensity = Mathf.Lerp(laserShotLight.intensity, 0f, fadeSpeed * Time.deltaTime);
     }
 
+    void OnAnimatorIK (int layerIndex)
+    {
+        float aimWeight = anim.GetFloat(hash.aimWeightFloat);
+        anim.SetIKPosition(AvatarIKGoal.RightHand, player.position + Vector3.up * 1f);
+        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, aimWeight);
+    }
+
     void Shoot ()
     {
         shooting = true;
         float fractionalDistance = (col.radius - Vector3.Distance(transform.position, player.position)) * colRadiusRecip;
         float damage = scaledDamage * fractionalDistance + minimumDamage;
         playerHealth.TakeDamage(damage);
+    }
+
+    void ShotEffects ()
+    {
+        //Vector3 laserPosition = laserShotLine.transform.position;
+        laserShotLine.SetPosition(0, laserShotLine.transform.position);
+        laserShotLine.SetPosition(1, player.position + Vector3.up * 1.5f);
+        laserShotLine.enabled = true;
+        laserShotLight.intensity = flashIntensity;
+        AudioSource.PlayClipAtPoint(shotClip, laserShotLine.transform.position);
     }
 }
 

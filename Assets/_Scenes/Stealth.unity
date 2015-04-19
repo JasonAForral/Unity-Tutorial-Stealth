@@ -650,12 +650,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb111814fa1d43848a45f3d8694b9bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserShotLine: {fileID: 423507039}
   maximumDamage: 120
   minimumDamage: 45
-  shotClip: {fileID: 0}
+  shotClip: {fileID: 8300000, guid: 0af3d513283ae634480aa98a0d2da839, type: 3}
   flashIntensity: 3
   fadeSpeed: 10
-  laserShotLine: {fileID: 423507039}
 --- !u!114 &303659024
 MonoBehaviour:
   m_ObjectHideFlags: 0
