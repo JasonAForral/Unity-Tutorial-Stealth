@@ -20,7 +20,7 @@ public class LaserSwitchDeactivation : MonoBehaviour
     {
         if(other.gameObject.CompareTag(Tags.player))
         {
-            if (Input.GetButton("Switch"))
+            if (Input.GetButton("Interact"))
             {
                 LaserDeactivation();
             }
