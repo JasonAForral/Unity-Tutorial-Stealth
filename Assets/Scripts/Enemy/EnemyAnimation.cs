@@ -3,25 +3,29 @@ using System.Collections;
 
 public class EnemyAnimation : MonoBehaviour {
 
-	public float deadZone = 5f;
+    //private HashIDs hash;
+    
+    public float deadZone = 5f;
 
     private Transform playerTransform;
+    
     private EnemySight enemySight;
     private NavMeshAgent nav;
     private Animator anim;
-    private HashIDs hash;
     private AnimatorSetup animSetup;
 
     void Awake() 
     {
-        playerTransform = GameObject.FindGameObjectWithTag(Tags.player).transform;
+        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        
         enemySight = GetComponent<EnemySight>();
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
 
+        playerTransform = GameObject.FindGameObjectWithTag(Tags.player).transform;
+        
         nav.updateRotation = false;
-        animSetup = new AnimatorSetup(anim, hash);
+        animSetup = new AnimatorSetup(anim); //, hash);
 
         anim.SetLayerWeight(1, 1f);
         anim.SetLayerWeight(2, 1f);
@@ -38,6 +42,7 @@ public class EnemyAnimation : MonoBehaviour {
     {
         nav.velocity = anim.deltaPosition / Time.deltaTime;
         transform.rotation = anim.rootRotation;
+
     }
 
     void NavAnimSetup ()
@@ -54,15 +59,17 @@ public class EnemyAnimation : MonoBehaviour {
         else
         {
             speed = Vector3.Project(nav.desiredVelocity, transform.forward).magnitude;
-
+            
             angle = FindAngle(transform.forward, nav.desiredVelocity, transform.up);
-
+            
             if (Mathf.Abs(angle) < deadZone)
             {
                 transform.LookAt(transform.position + nav.desiredVelocity);
                 angle = 0f;
             }
         }
+
+        //Debug.Log(speed);
 
         animSetup.Setup(speed, angle);
     }

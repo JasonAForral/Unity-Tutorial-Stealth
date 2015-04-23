@@ -3,14 +3,14 @@ using System.Collections;
 
 public class LastPlayerSighting : MonoBehaviour 
 {
-    public Vector3 position = Vector3.one * 1000f;
-    public Vector3 resetPosition = Vector3.one * 1000f;
+    public static Vector3 position = Vector3.one * 1000f;
+    public static Vector3 resetPosition = Vector3.one * 1000f;
 
-    public float lightHighIntensity = 0.25f;
-    public float lightLowIntensity = 0f;
+    public static float lightHighIntensity = 0.25f;
+    public static float lightLowIntensity = 0f;
 
-    public float fadespeed = 7f;
-    public float musicFadeSpeed = 1f;
+    public static float fadespeed = 7f;
+    public static float musicFadeSpeed = 1f;
 
     public Light mainLight;
     public AlarmLight alarm;

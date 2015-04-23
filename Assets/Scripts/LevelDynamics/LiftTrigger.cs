@@ -13,7 +13,7 @@ public class LiftTrigger : MonoBehaviour {
     //public SceneFadeInOut sceneFadeInOut;
 
     private GameObject player;
-    private HashIDs hash;
+    //private HashIDs hash;
     private SceneFadeInOut sceneFadeInOut;
     private Animator playerAnim;
     //private Camera camMovement;
@@ -26,7 +26,7 @@ public class LiftTrigger : MonoBehaviour {
     void Awake ()
     {
         player = GameObject.FindGameObjectWithTag(Tags.player);
-        hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
         sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<SceneFadeInOut>();
         
         playerAnim = player.GetComponent<Animator>();
@@ -74,7 +74,7 @@ public class LiftTrigger : MonoBehaviour {
         timer += Time.deltaTime;
         if (timer >= timeToLiftStart)
         {
-            playerAnim.SetFloat(hash.speedFloat, 0f);
+            playerAnim.SetFloat(HashIDs.speedFloat, 0f);
             //camMovement.enabled = true;
             player.transform.parent = transform;
 

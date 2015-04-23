@@ -22,7 +22,7 @@ public class LaserPlayerDetection : MonoBehaviour {
         {
             if (other.gameObject.CompareTag(Tags.player))
             {
-                lastPlayerSighting.position = player.position;
+                LastPlayerSighting.position = player.position;
             }
         }
     }

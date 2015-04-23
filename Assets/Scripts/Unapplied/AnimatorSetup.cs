@@ -5,23 +5,24 @@ public class AnimatorSetup
 {
     public float speedDampTime = 0.1f;
     public float angularSpeedDampTime = 0.7f;
-    public float angleResponseTimeInverse = 1f/0.6f ;
-
+    public float angleResponseTime = 0.6f;
+    public float angleResponseTimeInverse = 1.66f;
+    
     private Animator anim;
-    private HashIDs hash;
+    //private HashIDs hash;
 
-    public AnimatorSetup( Animator animator, HashIDs hashIDs)
+    public AnimatorSetup( Animator animator)
     {
         anim = animator;
-        hash = hashIDs;
+        //hash = hashIDs;
     }
 
     public void Setup(float speed, float angle)
     {
-        float angualrSpeed = angle * angleResponseTimeInverse;
+        float angularSpeed = angle * angleResponseTimeInverse;// / angleResponseTime;
 
-        anim.SetFloat(hash.angularSpeedFloat, speed, speedDampTime, Time.deltaTime);
-        anim.SetFloat(hash.angularSpeedFloat, angualrSpeed, angularSpeedDampTime, Time.deltaTime);
+        anim.SetFloat(HashIDs.speedFloat, speed, speedDampTime, Time.deltaTime);
+        anim.SetFloat(HashIDs.angularSpeedFloat, angularSpeed, angularSpeedDampTime, Time.deltaTime);
     }
 }
 

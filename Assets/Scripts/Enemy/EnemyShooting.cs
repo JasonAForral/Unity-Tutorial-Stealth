@@ -5,22 +5,24 @@ public class EnemyShooting : MonoBehaviour {
 
     public LineRenderer laserShotLine;
     
-    public float maximumDamage = 120f;
-    public float minimumDamage = 45f;
+    public static float maximumDamage = 120f;
+    public static float minimumDamage = 45f;
     public AudioClip shotClip;
-    public float flashIntensity = 3f;
-    public float fadeSpeed = 10f;
+    public static float flashIntensity = 3f;
+    public static float fadeSpeed = 10f;
 
     private Animator anim;
-    private HashIDs hash;
+    //private HashIDs hash;
+    
     private Light laserShotLight;
     private SphereCollider col;
     private Transform player;
     private PlayerHealth playerHealth;
+
     private bool shooting;
     private float scaledDamage;
 
-    private float colRadiusRecip;
+    public float colRadiusRecip;
 
     void Awake ()
     {
@@ -32,7 +34,7 @@ public class EnemyShooting : MonoBehaviour {
         col = GetComponent<SphereCollider>();
         player = GameObject.FindGameObjectWithTag(Tags.player).transform;
         playerHealth = player.gameObject.GetComponent<PlayerHealth>();
-        hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
 
         laserShotLine.enabled = false;
         laserShotLight.intensity = 0f;
@@ -44,7 +46,7 @@ public class EnemyShooting : MonoBehaviour {
 
     void Update ()
     {
-        float shot = anim.GetFloat(hash.shotFloat);
+        float shot = anim.GetFloat(HashIDs.shotFloat);
         if (shot > 0.5f && !shooting)
             // shots fired!
             Shoot();
@@ -59,7 +61,7 @@ public class EnemyShooting : MonoBehaviour {
 
     void OnAnimatorIK (int layerIndex)
     {
-        float aimWeight = anim.GetFloat(hash.aimWeightFloat);
+        float aimWeight = anim.GetFloat(HashIDs.aimWeightFloat);
         anim.SetIKPosition(AvatarIKGoal.RightHand, player.position + Vector3.up * 1f);
         anim.SetIKPositionWeight(AvatarIKGoal.RightHand, aimWeight);
     }

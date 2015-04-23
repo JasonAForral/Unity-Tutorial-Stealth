@@ -3,18 +3,18 @@ using System.Collections;
 
 public class HashIDs : MonoBehaviour {
 
-    public int dyingState;
-    public int deadBool;
-    public int locomotionSate;
-    public int shoutSate;
-    public int speedFloat;
-    public int sneakingBool;
-    public int shoutingBool;
-    public int playerInSightBool;
-    public int shotFloat;
-    public int aimWeightFloat;
-    public int angularSpeedFloat;
-    public int openBool;
+    public static int dyingState;
+    public static int deadBool;
+    public static int locomotionSate;
+    public static int shoutSate;
+    public static int speedFloat;
+    public static int sneakingBool;
+    public static int shoutingBool;
+    public static int playerInSightBool;
+    public static int shotFloat;
+    public static int aimWeightFloat;
+    public static int angularSpeedFloat;
+    public static int openBool;
 
     void Awake ()
     {

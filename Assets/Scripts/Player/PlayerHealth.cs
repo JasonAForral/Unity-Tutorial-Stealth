@@ -2,13 +2,13 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour {
-
-    public HashIDs hash; 
+public class PlayerHealth : MonoBehaviour 
+{
     public SceneFadeInOut sceneFadeInOut;
     public LastPlayerSighting lastPlayerSighting;
 
     //public gameObject gameController;
+    //public HashIDs hash; 
 
     public float health = 100f;
     public float resetAfterDeathTime = 5f;
@@ -67,20 +67,20 @@ public class PlayerHealth : MonoBehaviour {
     void playerDying ()
     {
         playerDead = true;
-        anim.SetBool(hash.deadBool, true);
+        anim.SetBool(HashIDs.deadBool, true);
         AudioSource.PlayClipAtPoint(deathClip, transform.position);
     }
 
     void PlayerDead ()
     {
-        if (hash.dyingState == anim.GetCurrentAnimatorStateInfo(0).fullPathHash)
+        if (HashIDs.dyingState == anim.GetCurrentAnimatorStateInfo(0).fullPathHash)
         {
-            anim.SetBool(hash.deadBool, false);
+            anim.SetBool(HashIDs.deadBool, false);
         }
 
-        anim.SetFloat(hash.speedFloat, 0f);
+        anim.SetFloat(HashIDs.speedFloat, 0f);
         playerMovement.enabled = false;
-        lastPlayerSighting.position = lastPlayerSighting.resetPosition;
+        LastPlayerSighting.position = LastPlayerSighting.resetPosition;
         audioSource.Stop();
     }
 

@@ -13,7 +13,7 @@ public class DoorAnimation : MonoBehaviour {
     public AudioClip accessDeniedClip;
 
     private Animator anim;
-    private HashIDs hash;
+    //private HashIDs hash;
     private GameObject player;
     private PlayerInventory playerInventory;
     private int count;
@@ -23,7 +23,7 @@ public class DoorAnimation : MonoBehaviour {
     void Awake ()
     {
         anim = GetComponent<Animator>();
-        hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
         player = GameObject.FindGameObjectWithTag(Tags.player);
         playerInventory = player.GetComponent<PlayerInventory>();
 
@@ -70,7 +70,7 @@ public class DoorAnimation : MonoBehaviour {
 
     void Update ()
     {
-        anim.SetBool(hash.openBool, count > 0);
+        anim.SetBool(HashIDs.openBool, count > 0);
 
         if (anim.IsInTransition(0) && !audioSource.isPlaying)
         {

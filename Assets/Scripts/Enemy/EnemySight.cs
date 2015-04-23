@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemySight : MonoBehaviour {
 
-    public float fieldOfViewAngle = 110f;
+    public static float fieldOfViewAngle = 110f;
     public bool playerInSight;
     public Vector3 personalLastSighting;
 
@@ -11,15 +11,15 @@ public class EnemySight : MonoBehaviour {
     private SphereCollider col;
     private Animator anim;
 
-    private GameObject gameController;
-    private LastPlayerSighting lastPlayerSighting;
-    private HashIDs hash;
-    
+    //private GameObject gameController;
+    //private LastPlayerSighting lastPlayerSighting;
+    //private HashIDs hash;
+
     private GameObject playerObj;
     private Animator playerAnim;
     private PlayerHealth playerHealth;
     
-    private Vector3 previousSighting;
+    public Vector3 previousSighting;
 
     void Awake ()
     {
@@ -27,22 +27,22 @@ public class EnemySight : MonoBehaviour {
         col = GetComponent<SphereCollider>();
         anim = GetComponent<Animator>();
 
-        gameController = GameObject.FindGameObjectWithTag(Tags.gameController);
-        hash = gameController.GetComponent<HashIDs>();
-        lastPlayerSighting = gameController.GetComponent<LastPlayerSighting>();
+        //gameController = GameObject.FindGameObjectWithTag(Tags.gameController);
+        //hash = gameController.GetComponent<HashIDs>();
+        //lastPlayerSighting = gameController.GetComponent<LastPlayerSighting>();
 
         playerObj = GameObject.FindGameObjectWithTag(Tags.player);//.GetComponent<Transform>();
         playerAnim = playerObj.GetComponent<Animator>();
         playerHealth = playerObj.GetComponent<PlayerHealth>();
 
-        Vector3 resetPosition = lastPlayerSighting.resetPosition;
+        Vector3 resetPosition = LastPlayerSighting.resetPosition;
         personalLastSighting = resetPosition;
         previousSighting = resetPosition;
     }
 
     void Update ()
     {
-        Vector3 globalPlayerSighting = lastPlayerSighting.position;
+        Vector3 globalPlayerSighting = LastPlayerSighting.position;
         
         if (globalPlayerSighting != previousSighting)
         {
@@ -51,9 +51,9 @@ public class EnemySight : MonoBehaviour {
         previousSighting = globalPlayerSighting;
 
         if (0 < playerHealth.health)
-            anim.SetBool(hash.playerInSightBool, playerInSight);
+            anim.SetBool(HashIDs.playerInSightBool, playerInSight);
         else
-            anim.SetBool(hash.playerInSightBool, false);
+            anim.SetBool(HashIDs.playerInSightBool, false);
     }
 
     void OnTriggerStay (Collider other)
@@ -80,7 +80,7 @@ public class EnemySight : MonoBehaviour {
                     if (hit.collider.CompareTag(Tags.player))
                     {
                         playerInSight = true;
-                        lastPlayerSighting.position = playerPosition;
+                        LastPlayerSighting.position = playerPosition;
                     }
                 }
             }
@@ -88,7 +88,7 @@ public class EnemySight : MonoBehaviour {
             int playerLayerZeroStateHash = playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash;
             int playerLayerOneStateHash = playerAnim.GetCurrentAnimatorStateInfo(1).fullPathHash;
 
-            if (hash.locomotionSate == playerLayerZeroStateHash || hash.shoutSate == playerLayerOneStateHash)
+            if (HashIDs.locomotionSate == playerLayerZeroStateHash || HashIDs.shoutSate == playerLayerOneStateHash)
             {
                 if (CalculatePathLength(playerPosition) <= col.radius)
                 {

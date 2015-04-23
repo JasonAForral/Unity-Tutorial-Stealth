@@ -8,21 +8,21 @@ public class EnemyAI : MonoBehaviour {
     public float patrolWaitTime =  1f;
     public Transform[] patrolWayPoints;
 
-    public Transform player;
     public PlayerHealth playerHealth;
-    public LastPlayerSighting lastPlayerSighting;
+    //public LastPlayerSighting lastPlayerSighting;
 
     private EnemySight enemySight;
     private NavMeshAgent nav;
 
-    private float chaseTimer;
-    private float patrolTimer;
-    private int wayPointIndex;
+    public float chaseTimer;
+    public float patrolTimer;
+    public int wayPointIndex;
+
+    public float remainingDistance;
 
     void Awake()
     {
-        //player = GameObject.FindGameObjectWithTag(Tags.player).transform;
-        //playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<PlayerHealth>();
         //lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<LastPlayerSighting>();
 
         enemySight = GetComponent<EnemySight>();
@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour {
     {
         if (enemySight.playerInSight && 0f < playerHealth.health)
             Shooting();
-        else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition && 0f < playerHealth.health)
+        else if (enemySight.personalLastSighting != LastPlayerSighting.resetPosition && 0f < playerHealth.health)
             Chasing();
         else
             Patrolling();
@@ -55,11 +55,11 @@ public class EnemyAI : MonoBehaviour {
         if (nav.remainingDistance < nav.stoppingDistance)
         {
             chaseTimer += Time.deltaTime;
-
-            if (chaseTimer > chaseWaitTime)
+            
+            if (chaseTimer >= chaseWaitTime)
             {
-                lastPlayerSighting.position = lastPlayerSighting.resetPosition;
-                enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
+                LastPlayerSighting.position = LastPlayerSighting.resetPosition;
+                enemySight.personalLastSighting = LastPlayerSighting.resetPosition;
                 chaseTimer = 0f;
             }
         }
@@ -70,24 +70,26 @@ public class EnemyAI : MonoBehaviour {
     void Patrolling ()
     {
         nav.speed = patrolSpeed;
-
-        if (nav.destination == lastPlayerSighting.resetPosition || nav.remainingDistance < nav.stoppingDistance)
+        if (nav.destination == LastPlayerSighting.resetPosition || nav.remainingDistance < nav.stoppingDistance)
         {
             patrolTimer += Time.deltaTime;
 
             if (patrolTimer >= patrolWaitTime)
             {
-                if (patrolWayPoints.Length - 1 == wayPointIndex)
+                if (wayPointIndex == patrolWayPoints.Length - 1)
                     wayPointIndex = 0;
                 else
                     wayPointIndex++;
 
-                patrolTimer = 0f;
+                // Reset the timer.
+                patrolTimer = 0;
             }
         }
         else
-            patrolTimer = 0f;
-
+        {
+            patrolTimer = 0;
+        }
+        
         nav.destination = patrolWayPoints[wayPointIndex].position;
     }
 }

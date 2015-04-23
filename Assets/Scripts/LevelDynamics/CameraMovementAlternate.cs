@@ -23,12 +23,18 @@ public class CameraMovementAlternate : MonoBehaviour {
         {
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X"));
             cameraTilt.Rotate(Vector3.left * Input.GetAxis("Mouse Y"));
-            cameraTilt.localRotation = Quaternion.Euler(Vector3.right * Mathf.Clamp(cameraTilt.eulerAngles.x, 5f, 80f));
+            float verticalRotation = cameraTilt.eulerAngles.x;
+            if (verticalRotation > 180) { verticalRotation -= 360f; }
+            cameraTilt.localEulerAngles = Vector3.right * Mathf.Clamp(verticalRotation, -80f, 80f);
         }
 
-        cameraZoom.Translate(Vector3.forward * 50 * Input.GetAxis("Mouse Scroll"), cameraZoom);
-        cameraZoom.localPosition = Vector3.forward * Mathf.Clamp(cameraZoom.localPosition.z, -10, -1);
+        float mouseScroll = Input.GetAxis("Mouse Scroll");
+        cameraZoom.Translate(Vector3.forward * 50 * mouseScroll, cameraZoom);
+        cameraZoom.localPosition = Vector3.forward *  Mathf.Clamp(cameraZoom.localPosition.z, -10f, 0f);
+        float localZoom = cameraZoom.localPosition.z;
+        
         /*
+         * do stuff to limit zoom here
         if raycast behind 
          * 
          */

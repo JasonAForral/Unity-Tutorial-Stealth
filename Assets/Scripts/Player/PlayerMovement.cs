@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     public float speedDampTime = 0.1f;
 
     private Animator anim;
-    public HashIDs hash;
+    //public HashIDs hash;
 
     private Rigidbody rigidBody;
     private AudioSource audioSource;
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
     void Update ()
     {
         bool shout = Input.GetButtonDown("Attract");
-        anim.SetBool(hash.shoutingBool, shout);
+        anim.SetBool(HashIDs.shoutingBool, shout);
         AudioManagement(shout);
     }
 
@@ -53,16 +53,16 @@ public class PlayerMovement : MonoBehaviour {
 
     void MovementManagement (float horizontal, float vertical, bool sneaking)
     {
-        anim.SetBool(hash.sneakingBool, sneaking);
+        anim.SetBool(HashIDs.sneakingBool, sneaking);
 
         if (0 != horizontal || 0 != vertical)
         {
             Rotating(horizontal, vertical);
-            anim.SetFloat(hash.speedFloat, 5.5f, speedDampTime, Time.deltaTime);
+            anim.SetFloat(HashIDs.speedFloat, 5.5f, speedDampTime, Time.deltaTime);
         }
         else
         {
-            anim.SetFloat (hash.speedFloat, 0f);
+            anim.SetFloat(HashIDs.speedFloat, 0f);
         }
     }
 
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void AudioManagement (bool shout)
     {
-        if (hash.locomotionSate == anim.GetCurrentAnimatorStateInfo(0).fullPathHash)
+        if (HashIDs.locomotionSate == anim.GetCurrentAnimatorStateInfo(0).fullPathHash)
         {
             if (!audioSource.isPlaying)
             {
