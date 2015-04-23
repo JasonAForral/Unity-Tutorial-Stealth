@@ -6,7 +6,7 @@ public class EnemySight : MonoBehaviour {
     public static float fieldOfViewAngle = 110f;
     public bool playerInSight;
     public Vector3 personalLastSighting;
-
+    
     private NavMeshAgent nav;
     private SphereCollider col;
     private Animator anim;
@@ -18,9 +18,9 @@ public class EnemySight : MonoBehaviour {
     private GameObject playerObj;
     private Animator playerAnim;
     private PlayerHealth playerHealth;
-    
-    public Vector3 previousSighting;
 
+    private Vector3 previousSighting;
+    
     void Awake ()
     {
         nav = GetComponent<NavMeshAgent>();

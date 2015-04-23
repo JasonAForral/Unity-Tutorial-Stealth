@@ -14,11 +14,9 @@ public class EnemyAI : MonoBehaviour {
     private EnemySight enemySight;
     private NavMeshAgent nav;
 
-    public float chaseTimer;
-    public float patrolTimer;
-    public int wayPointIndex;
-
-    public float remainingDistance;
+    private float chaseTimer;
+    private float patrolTimer;
+    private int wayPointIndex;
 
     void Awake()
     {

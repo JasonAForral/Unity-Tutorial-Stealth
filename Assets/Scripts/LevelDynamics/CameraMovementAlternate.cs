@@ -31,7 +31,6 @@ public class CameraMovementAlternate : MonoBehaviour {
         float mouseScroll = Input.GetAxis("Mouse Scroll");
         cameraZoom.Translate(Vector3.forward * 50 * mouseScroll, cameraZoom);
         cameraZoom.localPosition = Vector3.forward *  Mathf.Clamp(cameraZoom.localPosition.z, -10f, 0f);
-        float localZoom = cameraZoom.localPosition.z;
         
         /*
          * do stuff to limit zoom here
