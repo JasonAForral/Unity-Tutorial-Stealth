@@ -6,6 +6,7 @@ public class CameraMovementAlternate : MonoBehaviour {
     public Transform player;
     public Transform cameraTilt;
     public Transform cameraZoom;
+    public GameObject camera2;
 
     public Vector3 cameraOffset;
 
@@ -24,6 +25,10 @@ public class CameraMovementAlternate : MonoBehaviour {
             cameraTilt = transform.GetChild(0);
         if (null == cameraZoom)
             cameraZoom = cameraTilt.GetChild(0);
+        if (null == camera2)
+            camera2 = cameraZoom.GetChild(0).gameObject;
+
+        camera2.SetActive(false);
 
         zoomTarget = zoomCurent = cameraZoom.localPosition.z;
     }
@@ -31,7 +36,7 @@ public class CameraMovementAlternate : MonoBehaviour {
     void Update ()
     {
         transform.position = player.position + cameraOffset;
-        if (Input.GetMouseButton(1))
+        if (Input.GetButton("Fire3"))
         {
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X"));
             cameraTilt.Rotate(Vector3.left * Input.GetAxis("Mouse Y"));
@@ -41,7 +46,7 @@ public class CameraMovementAlternate : MonoBehaviour {
         }
 
         zoomCurent = cameraZoom.localPosition.z;
-        zoomTarget += 50f * Input.GetAxis("Mouse Scroll");
+        zoomTarget += 50f * Input.GetAxis("Mouse ScrollWheel");
         zoomTarget = Mathf.Clamp(zoomTarget, -5f, -1f);
 
         if (Mathf.Abs(zoomTarget - zoomCurent) > 0.05f)
@@ -52,6 +57,11 @@ public class CameraMovementAlternate : MonoBehaviour {
         if raycast behind 
          * 
          */
+
+        if (Input.GetButtonDown("Vision"))
+        {
+            camera2.SetActive(!camera2.activeSelf);
+        }
 
     }
 
