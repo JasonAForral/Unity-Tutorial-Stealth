@@ -16,6 +16,6 @@ public class MiniMapController : MonoBehaviour {
 	void LateUpdate () {
         //transform.position = focus.position + offset;
 
-        transform.position = Vector3.Lerp(transform.position, focus.position + offset + focus.forward * 5, 0.1f);
+        transform.position = Vector3.Lerp(transform.position, focus.position + offset + focus.forward * 1f, 0.1f);
 	}
 }

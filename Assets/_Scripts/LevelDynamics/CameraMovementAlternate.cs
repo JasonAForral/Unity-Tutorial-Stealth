@@ -7,13 +7,25 @@ public class CameraMovementAlternate : MonoBehaviour {
     public Transform cameraTilt;
     public Transform cameraZoom;
 
-    private Vector3 cameraOffset;
+    public Vector3 cameraOffset;
 
-    //private float maxZoom;
+    [SerializeField]
+    private float zoomSpeed = 5f;
+    
+
+    private float zoomTarget;
+    private float zoomCurent;
 
     void Awake ()
     {
         cameraOffset = transform.position - player.position;
+
+        if (null == cameraTilt)
+            cameraTilt = transform.GetChild(0);
+        if (null == cameraZoom)
+            cameraZoom = cameraTilt.GetChild(0);
+
+        zoomTarget = zoomCurent = cameraZoom.localPosition.z;
     }
 
     void Update ()
@@ -28,10 +40,13 @@ public class CameraMovementAlternate : MonoBehaviour {
             cameraTilt.localEulerAngles = Vector3.right * Mathf.Clamp(verticalRotation, -80f, 80f);
         }
 
-        float mouseScroll = Input.GetAxis("Mouse Scroll");
-        cameraZoom.Translate(Vector3.forward * 50 * mouseScroll, cameraZoom);
-        cameraZoom.localPosition = Vector3.forward *  Mathf.Clamp(cameraZoom.localPosition.z, -10f, 0f);
-        
+        zoomCurent = cameraZoom.localPosition.z;
+        zoomTarget += 50f * Input.GetAxis("Mouse Scroll");
+        zoomTarget = Mathf.Clamp(zoomTarget, -5f, -1f);
+
+        if (Mathf.Abs(zoomTarget - zoomCurent) > 0.05f)
+            cameraZoom.localPosition = Vector3.forward * Mathf.Lerp(zoomCurent, zoomTarget, zoomSpeed * Time.deltaTime);
+
         /*
          * do stuff to limit zoom here
         if raycast behind 

@@ -70,7 +70,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 583cc856362205f40898f7f617be0846, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .800000012
+  m_Volume: .200000003
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -208,12 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b283715406a1efc4d8b2692ed6262ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 1000, y: 1000, z: 1000}
-  resetPosition: {x: 1000, y: 1000, z: 1000}
-  lightHighIntensity: .75
-  lightLowIntensity: 0
-  fadespeed: 7
-  musicFadeSpeed: 1
   mainLight: {fileID: 0}
   alarm: {fileID: 0}
   panicAudio: {fileID: 8284048}
@@ -228,18 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388ee615afded08498a858bae4bb0b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dyingState: 0
-  deadBool: 0
-  locomotionSate: 0
-  shoutSate: 0
-  speedFloat: 0
-  sneakingBool: 0
-  shoutingBool: 0
-  playerInSightBool: 0
-  shotFloat: 0
-  aimWeightFloat: 0
-  angularSpeedFloat: 0
-  openBool: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -69,12 +69,12 @@ public class LastPlayerSighting : MonoBehaviour
         if (position != resetPosition)
         {
             audioSource.volume = Mathf.Lerp(audioSource.volume, 0f, musicFadeSpeed * Time.deltaTime);
-            panicAudio.volume = Mathf.Lerp(panicAudio.volume, 0.8f, musicFadeSpeed * Time.deltaTime);
+            panicAudio.volume = Mathf.Lerp(panicAudio.volume, 0.2f, musicFadeSpeed * Time.deltaTime);
 
         }
         else
         {
-            audioSource.volume = Mathf.Lerp(audioSource.volume, 0.8f, musicFadeSpeed * Time.deltaTime);
+            audioSource.volume = Mathf.Lerp(audioSource.volume, 0.2f, musicFadeSpeed * Time.deltaTime);
             panicAudio.volume = Mathf.Lerp(panicAudio.volume, 0f, musicFadeSpeed * Time.deltaTime);
         }
     }
