@@ -1,29 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyAnimation : MonoBehaviour {
+public class EnemyAnimation : MonoBehaviour
+{
 
-    //private HashIDs hash;
-    
+
     public float deadZone = 5f;
 
     private Transform playerTransform;
-    
+
     private EnemySight enemySight;
     private NavMeshAgent nav;
     private Animator anim;
     private AnimatorSetup animSetup;
 
-    void Awake() 
+    void Awake ()
     {
-        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
-        
         enemySight = GetComponent<EnemySight>();
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
 
         playerTransform = GameObject.FindGameObjectWithTag(Tags.player).transform;
-        
+
         nav.updateRotation = false;
         animSetup = new AnimatorSetup(anim); //, hash);
 
@@ -59,17 +57,15 @@ public class EnemyAnimation : MonoBehaviour {
         else
         {
             speed = Vector3.Project(nav.desiredVelocity, transform.forward).magnitude;
-            
+
             angle = FindAngle(transform.forward, nav.desiredVelocity, transform.up);
-            
+
             if (Mathf.Abs(angle) < deadZone)
             {
                 transform.LookAt(transform.position + nav.desiredVelocity);
                 angle = 0f;
             }
         }
-
-        //Debug.Log(speed);
 
         animSetup.Setup(speed, angle);
     }
@@ -86,6 +82,6 @@ public class EnemyAnimation : MonoBehaviour {
         angle *= Mathf.Sign(Vector3.Dot(normal, upVector));
         angle *= Mathf.Deg2Rad;
 
-        return angle; 
+        return angle;
     }
 }

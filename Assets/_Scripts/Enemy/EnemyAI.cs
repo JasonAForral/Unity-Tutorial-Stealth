@@ -8,9 +8,6 @@ public class EnemyAI : MonoBehaviour {
     public float patrolWaitTime =  1f;
     public Transform[] patrolWayPoints;
 
-    public PlayerHealth playerHealth;
-    //public LastPlayerSighting lastPlayerSighting;
-
     private EnemySight enemySight;
     private NavMeshAgent nav;
 
@@ -20,18 +17,15 @@ public class EnemyAI : MonoBehaviour {
 
     void Awake()
     {
-        playerHealth = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<PlayerHealth>();
-        //lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<LastPlayerSighting>();
-
         enemySight = GetComponent<EnemySight>();
         nav = GetComponent<NavMeshAgent>();
     }
 
     void Update ()
     {
-        if (enemySight.playerInSight && 0f < playerHealth.health)
+        if (enemySight.playerInSight && 0f < PlayerHealth.Health)
             Shooting();
-        else if (enemySight.personalLastSighting != LastPlayerSighting.resetPosition && 0f < playerHealth.health)
+        else if (enemySight.personalLastSighting != LastPlayerSighting.resetPosition && 0f < PlayerHealth.Health)
             Chasing();
         else
             Patrolling();

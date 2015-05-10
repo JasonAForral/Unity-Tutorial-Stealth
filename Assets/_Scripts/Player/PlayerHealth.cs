@@ -2,24 +2,16 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour 
+public class PlayerHealth : MonoBehaviour , IDamagable
 {
     public SceneFadeInOut sceneFadeInOut;
-    public LastPlayerSighting lastPlayerSighting;
-
-    //public gameObject gameController;
-    //public HashIDs hash; 
-
+    
     public float health = 100f;
     public float resetAfterDeathTime = 5f;
     public AudioClip deathClip;
 
     private Animator anim;
     private PlayerMovement playerMovement;
-
-    //private HashIDs hash;
-    //private ScreenFadeInOut sceneFadeInOut;
-    //private LastPlayerSighting lastPlayerSighting;
 
     private float timer;
     private bool playerDead;
@@ -28,19 +20,24 @@ public class PlayerHealth : MonoBehaviour
 
     public Text healthText;
     public RectTransform healthImageSize;
-    
+
+
+    public static PlayerHealth instance;
+
+    public static float Health
+    {
+        get { return instance.health; }
+    }
+
     void Awake ()
     {
+        if (null == instance)
+            instance = this;
+        else if (this != instance)
+            Destroy(gameObject);
+
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-
-        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
-        //sceneFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<ScreenFadeInOut>();
-        //lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
-        
-        //// alternatlly grabe gameController once
-        //hash = gameController.GetComponent<HashIDs>();
-        //lastPlayerSighting = gameController.GetComponent<LastPlayerSighting>();
 
         audioSource = GetComponent<AudioSource>();
         UpdateHealthDisplay();

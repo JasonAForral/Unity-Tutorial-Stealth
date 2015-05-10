@@ -12,10 +12,16 @@ public class CameraMovementAlternate : MonoBehaviour {
 
     [SerializeField]
     private float zoomSpeed = 5f;
-    
+
+    [SerializeField]
+    private float rotationSpeed = 2f;
+
+    [SerializeField]
+    private float verticalRotation = 3f;
 
     private float zoomTarget;
     private float zoomCurent;
+
 
     void Awake ()
     {
@@ -38,11 +44,12 @@ public class CameraMovementAlternate : MonoBehaviour {
         transform.position = player.position + cameraOffset;
         if (Input.GetButton("Fire3"))
         {
-            transform.Rotate(Vector3.up * Input.GetAxis("Mouse X"));
-            cameraTilt.Rotate(Vector3.left * Input.GetAxis("Mouse Y"));
-            float verticalRotation = cameraTilt.eulerAngles.x;
-            if (verticalRotation > 180) { verticalRotation -= 360f; }
-            cameraTilt.localEulerAngles = Vector3.right * Mathf.Clamp(verticalRotation, -80f, 80f);
+            transform.Rotate(Vector3.up * rotationSpeed * Input.GetAxis("Mouse X"));
+            
+            verticalRotation -= rotationSpeed * Input.GetAxis("Mouse Y");
+            if (verticalRotation > 180) verticalRotation -= 360f;
+            verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
+            cameraTilt.localEulerAngles = Vector3.right * verticalRotation;
         }
 
         zoomCurent = cameraZoom.localPosition.z;

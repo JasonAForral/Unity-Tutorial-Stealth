@@ -7,8 +7,6 @@ public class LaserSwitchDeactivation : MonoBehaviour
     public Material unlockedMat;
     public MeshRenderer screen;
 
-    public Transform player;
-
     private AudioSource audioSource;
 
     void Awake ()

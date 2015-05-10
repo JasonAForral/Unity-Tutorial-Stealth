@@ -8,19 +8,26 @@ public class PlayerMovement : MonoBehaviour {
     public float speedDampTime = 0.1f;
 
     private Animator anim;
-    //public HashIDs hash;
-
+    
     private Rigidbody rigidBody;
     private AudioSource audioSource;
 
     public Transform cameraPan;
-    //private HashIDs hash;
+
+    public static GameObject player;
+    public static Vector3 Position{
+        get { return player.transform.position; }
+    }
+
 
     void Awake ()
     {
-        anim = GetComponent<Animator>();
-        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        if (null == player)
+            player = transform.gameObject;
+        else if (this != player)
+            Destroy(player);
 
+        anim = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
 

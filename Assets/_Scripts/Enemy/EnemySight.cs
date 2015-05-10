@@ -11,14 +11,10 @@ public class EnemySight : MonoBehaviour {
     private SphereCollider col;
     private Animator anim;
 
-    //private GameObject gameController;
-    //private LastPlayerSighting lastPlayerSighting;
-    //private HashIDs hash;
-
+    [SerializeField]
     private GameObject playerObj;
     private Animator playerAnim;
-    private PlayerHealth playerHealth;
-
+    
     private Vector3 previousSighting;
     
     void Awake ()
@@ -31,15 +27,17 @@ public class EnemySight : MonoBehaviour {
         //hash = gameController.GetComponent<HashIDs>();
         //lastPlayerSighting = gameController.GetComponent<LastPlayerSighting>();
 
-        playerObj = GameObject.FindGameObjectWithTag(Tags.player);//.GetComponent<Transform>();
-        playerAnim = playerObj.GetComponent<Animator>();
-        playerHealth = playerObj.GetComponent<PlayerHealth>();
-
+        
         Vector3 resetPosition = LastPlayerSighting.resetPosition;
         personalLastSighting = resetPosition;
         previousSighting = resetPosition;
     }
 
+    void Start ()
+    {
+        playerObj = PlayerMovement.player;
+        playerAnim = playerObj.GetComponent<Animator>();
+    }
     void Update ()
     {
         Vector3 globalPlayerSighting = LastPlayerSighting.position;
@@ -50,7 +48,7 @@ public class EnemySight : MonoBehaviour {
         }
         previousSighting = globalPlayerSighting;
 
-        if (0 < playerHealth.health)
+        if (0 < PlayerHealth.Health)
             anim.SetBool(HashIDs.playerInSightBool, playerInSight);
         else
             anim.SetBool(HashIDs.playerInSightBool, false);
@@ -61,7 +59,7 @@ public class EnemySight : MonoBehaviour {
         if (other.CompareTag(Tags.player))
         {
             playerInSight = false;
-            if (0 >= playerHealth.health)
+            if (0 >= PlayerHealth.Health)
                 return;
             
             Vector3 myPosition = transform.position;

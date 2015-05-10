@@ -8,14 +8,12 @@ public class LaserBlinking : MonoBehaviour {
 
     private MeshRenderer meshRenderer;
     private Light lightSource;
-    //private AudioSource audioSource;
     private float timer;
 
     void Awake ()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         lightSource = GetComponent<Light>();
-        //audioSource = GetComponent<AudioSource>();
     }
 
     void Update () 
@@ -38,7 +36,6 @@ public class LaserBlinking : MonoBehaviour {
 
         meshRenderer.enabled = !meshRenderer.enabled;
         lightSource.enabled = !lightSource.enabled;
-        //audioSource.enabled = !audioSource.enabled;
     }
 
 }

@@ -14,7 +14,7 @@ public class LiftDoorsTracking : MonoBehaviour {
 
     void Awake ()
     {
-        //leftOuterDoor = gameObject.;
+        //leftOuterDoor = player.;
         //rightOuterDoor;
         //leftInnerDoor;
         //RightInnerDoor

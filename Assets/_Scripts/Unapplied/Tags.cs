@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tags : MonoBehaviour {
+public static class Tags {
 
     public const string player = "Player";
     public const string alarm = "AlarmLight";

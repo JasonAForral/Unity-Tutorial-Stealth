@@ -7,6 +7,8 @@ public class MiniMapController : MonoBehaviour {
 
     private Vector3 offset;
 
+    
+
 	// Use this for initialization
 	void Awake () {
         offset = transform.position - focus.position;
@@ -16,6 +18,6 @@ public class MiniMapController : MonoBehaviour {
 	void LateUpdate () {
         //transform.position = focus.position + offset;
 
-        transform.position = Vector3.Lerp(transform.position, focus.position + offset + focus.forward * 1f, 0.1f);
+        transform.position = Vector3.Lerp(transform.position, focus.position + offset + focus.forward * 2f, 0.1f);
 	}
 }

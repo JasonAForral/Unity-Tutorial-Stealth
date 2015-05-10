@@ -12,13 +12,10 @@ public class EnemyShooting : MonoBehaviour {
     public static float fadeSpeed = 10f;
 
     private Animator anim;
-    //private HashIDs hash;
     
     private Light laserShotLight;
     private SphereCollider col;
-    private Transform player;
-    private PlayerHealth playerHealth;
-
+    
     private bool shooting;
     private float scaledDamage;
 
@@ -28,14 +25,9 @@ public class EnemyShooting : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
 
-        player = GameObject.FindGameObjectWithTag(Tags.player).transform;
-        //laserShotLine = GetComponentInChildren<LineRenderer>();
         laserShotLight = laserShotLine.GetComponent<Light>();
         col = GetComponent<SphereCollider>();
-        player = GameObject.FindGameObjectWithTag(Tags.player).transform;
-        playerHealth = player.gameObject.GetComponent<PlayerHealth>();
-        //hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
-
+        
         laserShotLine.enabled = false;
         laserShotLight.intensity = 0f;
 
@@ -62,16 +54,16 @@ public class EnemyShooting : MonoBehaviour {
     void OnAnimatorIK (int layerIndex)
     {
         float aimWeight = anim.GetFloat(HashIDs.aimWeightFloat);
-        anim.SetIKPosition(AvatarIKGoal.RightHand, player.position + Vector3.up * 1f);
+        anim.SetIKPosition(AvatarIKGoal.RightHand, PlayerMovement.Position + Vector3.up * 1f);
         anim.SetIKPositionWeight(AvatarIKGoal.RightHand, aimWeight);
     }
 
     void Shoot ()
     {
         shooting = true;
-        float fractionalDistance = (col.radius - Vector3.Distance(transform.position, player.position)) * colRadiusRecip;
+        float fractionalDistance = (col.radius - Vector3.Distance(transform.position, PlayerMovement.Position)) * colRadiusRecip;
         float damage = scaledDamage * fractionalDistance + minimumDamage;
-        playerHealth.TakeDamage(damage);
+        PlayerHealth.instance.TakeDamage(damage);
         ShotEffects();
     }
 
@@ -79,7 +71,7 @@ public class EnemyShooting : MonoBehaviour {
     {
         Vector3 laserPosition = laserShotLine.transform.position;
         laserShotLine.SetPosition(0, laserPosition);
-        laserShotLine.SetPosition(1, player.position + Vector3.up * 1.5f);
+        laserShotLine.SetPosition(1, PlayerMovement.Position + Vector3.up * 1.5f);
         laserShotLine.enabled = true;
         laserShotLight.intensity = flashIntensity;
         AudioSource.PlayClipAtPoint(shotClip, laserPosition);
